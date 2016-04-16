@@ -93,12 +93,24 @@
                     </div>
                 </div>
 
-
-
                 <div class="row">
                     <div class="input-field col s12">
                         <label for="timepicker_vibrate">Time options - vibrate: true</label>
                         <input id="timepicker_vibrate" class="timepicker" type="time">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s12">
+                        <label for="timepicker_exactmins">Time options - exactmins: false</label>
+                        <input id="timepicker_exactmins" class="timepicker" type="time">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s12">
+                        <label for="timepicker_exactmins_now">Time options - exactmins: false, default: 'now'</label>
+                        <input id="timepicker_exactmins_now" class="timepicker" type="time">
                     </div>
                 </div>
 
@@ -148,6 +160,16 @@
     $('#timepicker_vibrate').pickatime({
       vibrate: true
     });
+    //exactmins
+    $('#timepicker_exactmins').pickatime({
+      exactmins: false
+    });
+    //exactmin + now
+    $('#timepicker_exactmins_now').pickatime({
+      exactmins: false,
+      default: 'now'
+    });
+
     </script>
 </body>
 

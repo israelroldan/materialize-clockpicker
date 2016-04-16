@@ -250,7 +250,7 @@
 		// Clicking on minutes view space
 		plate.on(mousedownEvent, function(e) {
 			if ($(e.target).closest('.clockpicker-tick').length === 0)
-				mousedown(e, true);
+				mousedown(e, options.exactmins);
 		});
 
 		// Mousedown or touchstart
@@ -291,7 +291,7 @@
 					// Clicking in chrome on windows will trigger a mousemove event
 					return;
 				moved = true;
-				self.setHand(x, y, false, true);
+				self.setHand(x, y, !options.exactmins, true);
 			});
 
 			// Mouseup on document
@@ -376,9 +376,10 @@
 		donetext: 'Done',      // done button text
 		autoclose: false,      // auto close when minute is selected
 		ampmclickable: false,  // set am/pm button on itself
-		darktheme: false,			 // set to dark theme
+		darktheme: false,	   // set to dark theme
 		twelvehour: true,      // change to 12 hour AM/PM clock from 24 hour
-		vibrate: true          // vibrate the device when dragging clock hand
+		vibrate: true,         // vibrate the device when dragging clock hand
+		exactmins: true 	   // enable exact minutes, if false you can only click 5, 10, 15 etc.
 	};
 
 	// Show or hide popover
@@ -449,6 +450,25 @@
 				now.getHours(),
 				now.getMinutes()
 			];
+			//set exact minutes
+			if (!this.options.exactmins && value[1] % 5) {
+				//go down
+				if (value[1] % 5 < 3) {
+					value[1] -=  value[1] % 5;
+				//go up
+				} else {
+					value[1] += (5 - (value[1] % 5));
+				}
+				//next hour
+				if (value[1] === 60) {
+					value[0]++;
+					value[1] = 0;
+				}
+				//24 -> 0
+				if (value[0] === 24) {
+					value[0] = 0;
+				}
+			}
 		}
 		this.hours = + value[0] || 0;
 		this.minutes = + value[1] || 0;
