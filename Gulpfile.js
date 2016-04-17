@@ -36,4 +36,5 @@ gulp.task('watch', function () {
     })
 });
 
+gulp.task('build', ['js', 'sass']);
 

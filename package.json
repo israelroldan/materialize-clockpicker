@@ -1,6 +1,6 @@
 {
   "name": "materialize-clockpicker",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A materialize clockpicker",
   "main": "js/materialize.clockpicker.js",
   "repository": {
