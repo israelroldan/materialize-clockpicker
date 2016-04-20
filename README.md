@@ -22,7 +22,8 @@ ampmclickable: false,  // set am/pm button on itself
 darktheme: false,      // set to dark theme
 twelvehour: true,      // change to 12 hour AM/PM clock from 24 hour
 vibrate: true,         // vibrate the device when dragging clock hand
-exactmins: true        // enable exact minutes, if false you can only click 5, 10, 15 etc.
+exactmins: true,       // enable exact minutes, if false you can only click 5, 10, 15 etc.
+appendto: null         // append the picker to another element than default ( you can use, query selector string or DOM element)
 ```
 
 ## Screenshots:
