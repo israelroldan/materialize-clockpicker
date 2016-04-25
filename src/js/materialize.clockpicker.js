@@ -180,6 +180,8 @@
 					self.amOrPm = 'PM';
 				}).appendTo(this.spanAmPm);
 			}
+		} else {
+			this.amPmBlock.remove();
 		}
 		//force input to type ( disable type=time )
 		input.attr('type','text');
@@ -188,7 +190,15 @@
 			popover.addClass('darktheme');
 
 			// If autoclose is not setted, append a button
-		$('<button type="button" class="btn-flat clockpicker-button" tabindex="' + (options.twelvehour? '3' : '1') + '">' + options.donetext + '</button>').click($.proxy(this.done, this)).appendTo(this.footer);
+		$('<button type="button" class="waves-effect wave-light btn-flat clockpicker-button" tabindex="' + (options.twelvehour? '3' : '1') + '">' + options.donetext + '</button>').click($.proxy(this.done, this)).appendTo(this.footer);
+
+		//if cancel button
+		if (options.cancelbtn) {
+			$('<button type="button" class="waves-effect waves-red  btn-flat clockpicker-button red-text" tabindex="' + (options.twelvehour? '4' : '2') + '">' + options.canceltext + '</button>')
+			.click($.proxy(this.hide, this))
+			.prependTo(this.footer);
+		}
+
 
 		this.spanHours.click($.proxy(this.toggleView, this, 'hours'));
 		this.spanMinutes.click($.proxy(this.toggleView, this, 'minutes'));
@@ -380,7 +390,9 @@
 		twelvehour: true,      // change to 12 hour AM/PM clock from 24 hour
 		vibrate: true,         // vibrate the device when dragging clock hand
 		exactmins: true, 	   // enable exact minutes, if false you can only click 5, 10, 15 etc.
-		appendto: null		   // append the picker to another element than default ( you can use, query selector string or DOM element)
+		appendto: null,		   // append the picker to another element than default ( you can use, query selector string or DOM element)
+		cancelbtn: false,	   // show cancel button
+		canceltext: 'cancel'   // text of the cancel button
 	};
 
 	// Show or hide popover
@@ -406,6 +418,9 @@
 		// Not show again
 		if (this.isShown) {
 			return;
+		}
+		if (e) {
+			e.preventDefault();
 		}
 		raiseCallback(this.options.beforeShow);
 		$(':input').each(function() {

@@ -113,6 +113,13 @@
                         <input id="timepicker_exactmins_now" class="timepicker" type="time">
                     </div>
                 </div>
+
+                <div class="row">
+                    <div class="input-field col s12">
+                        <label for="timepicker_cancelbtn">Time options - cancelbtn: true, canceltext: 'close'</label>
+                        <input id="timepicker_cancelbtn" class="timepicker" type="time">
+                    </div>
+                </div>
             </form>
         </div>
     </div>
@@ -178,6 +185,11 @@
     $('#timepicker_exactmins_now').pickatime({
       exactmins: false,
       default: 'now'
+    });
+    //cancelbtn
+    $('#timepicker_cancelbtn').pickatime({
+      cancelbtn: true,
+      canceltext: 'close'
     });
 
     </script>
